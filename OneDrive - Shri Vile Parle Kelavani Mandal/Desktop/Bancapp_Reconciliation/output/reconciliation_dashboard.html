@@ -1,0 +1,225 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bancapp Reconciliation Dashboard</title>
+        <style>
+            :root {
+                --primary: #0f172a; --accent: #2563eb; --bg: #f8fafc; --card-bg: #ffffff;
+                --text-main: #1e293b; --text-muted: #64748b; --success: #10b981;
+                --warning: #f59e0b; --danger: #ef4444; --border: #e2e8f0;
+            }
+            * { box-sizing: border-box; margin: 0; padding: 0; }
+            body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: var(--bg); color: var(--text-main); line-height: 1.5; }
+            .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+            header { background: var(--primary); color: white; padding: 30px 40px; border-radius: 12px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+            header h1 { font-size: 24px; font-weight: 600; } header p { color: #94a3b8; font-size: 14px; margin-top: 5px; }
+            .timestamp { font-size: 13px; color: #cbd5e1; text-align: right; }
+            .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 40px; }
+            .kpi-card { background: var(--card-bg); padding: 24px; border-radius: 12px; border-left: 4px solid var(--accent); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+            .kpi-value { font-size: 32px; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+            .kpi-label { color: var(--text-muted); font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+            .kpi-card.success { border-left-color: var(--success); } .kpi-card.warning { border-left-color: var(--warning); }
+            .section { background: var(--card-bg); padding: 30px; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+            .section-title { font-size: 18px; font-weight: 600; color: var(--primary); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
+            .chart-row { display: flex; align-items: center; margin-bottom: 16px; }
+            .chart-label { width: 120px; font-size: 14px; font-weight: 600; }
+            .chart-track { flex-grow: 1; background: #f1f5f9; height: 24px; border-radius: 4px; position: relative; margin: 0 15px; }
+            .chart-fill { height: 100%; border-radius: 4px; transition: width 0.5s ease; }
+            .chart-percent { position: absolute; top: 50%; transform: translateY(-50%); font-size: 12px; font-weight: 600; color: var(--text-muted); margin-left: 8px; }
+            .chart-value { width: 60px; text-align: right; font-size: 14px; font-weight: 700; }
+            table { width: 100%; border-collapse: collapse; }
+            th { text-align: left; padding: 12px 16px; background: #f1f5f9; color: var(--text-muted); font-size: 12px; text-transform: uppercase; font-weight: 600; border-bottom: 2px solid var(--border); }
+            td { padding: 16px; border-bottom: 1px solid var(--border); font-size: 14px; }
+            .exception-table thead th { background: #0f172a; color: white; font-weight: 600; }
+            .badge { display: inline-block; padding: 4px 12px; border-radius: 9999px; font-size: 12px; font-weight: 600; }
+            .badge-danger { background: #fee2e2; color: #991b1b; } .badge-warning { background: #fef3c7; color: #92400e; } .badge-info { background: #dbeafe; color: #1e40af; }
+            footer { text-align: center; color: var(--text-muted); font-size: 13px; margin-top: 40px; border-top: 1px solid var(--border); padding-top: 20px; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <div>
+                    <h1>🏦 Bancapp Reconciliation Dashboard</h1>
+                    <p>Automated Financial Reconciliation & Exception Management Report</p>
+                </div>
+                <div class="timestamp">Generated on<br>August 26, 2026 at 01:12 AM</div>
+            </header>
+
+            <div class="kpi-grid">
+                <div class="kpi-card"><div class="kpi-value">616</div><div class="kpi-label">Total Internal Txns</div></div>
+                <div class="kpi-card"><div class="kpi-value">502</div><div class="kpi-label">Total Bank Lines</div></div>
+                <div class="kpi-card success"><div class="kpi-value">509</div><div class="kpi-label">Internal Matched</div></div>
+                <div class="kpi-card success"><div class="kpi-value">443</div><div class="kpi-label">Bank Lines Matched</div></div>
+                <div class="kpi-card warning"><div class="kpi-value">188</div><div class="kpi-label">Total Exceptions</div></div>
+                <div class="kpi-card success"><div class="kpi-value">22</div><div class="kpi-label">May Backlog Cleared</div></div>
+            </div>
+
+            <div class="section">
+                <div class="section-title"><span>✅</span> Reconciliation Status Summary (Unified View)</div>
+    
+                <div class="chart-row">
+                    <div class="chart-label">MATCHED</div>
+                    <div class="chart-track">
+                        <div class="chart-fill" style="width: 69.01004304160688%; background-color: var(--success);"></div>
+                        <div class="chart-percent" style="left: 69.01004304160688%;">69.0%</div>
+                    </div>
+                    <div class="chart-value">481</div>
+                </div>
+        
+                <div class="chart-row">
+                    <div class="chart-label">EXCEPTION</div>
+                    <div class="chart-track">
+                        <div class="chart-fill" style="width: 17.216642754662843%; background-color: var(--danger);"></div>
+                        <div class="chart-percent" style="left: 17.216642754662843%;">17.2%</div>
+                    </div>
+                    <div class="chart-value">120</div>
+                </div>
+        
+                <div class="chart-row">
+                    <div class="chart-label">OPEN</div>
+                    <div class="chart-track">
+                        <div class="chart-fill" style="width: 9.75609756097561%; background-color: var(--accent);"></div>
+                        <div class="chart-percent" style="left: 9.75609756097561%;">9.8%</div>
+                    </div>
+                    <div class="chart-value">68</div>
+                </div>
+        
+                <div class="chart-row">
+                    <div class="chart-label">PARTIAL_MATCH</div>
+                    <div class="chart-track">
+                        <div class="chart-fill" style="width: 4.017216642754662%; background-color: var(--warning);"></div>
+                        <div class="chart-percent" style="left: 4.017216642754662%;">4.0%</div>
+                    </div>
+                    <div class="chart-value">28</div>
+                </div>
+        
+            </div>
+
+            <div class="section">
+                <div class="section-title"><span>🔗</span> Matching Cardinality Distribution (Matched Only)</div>
+    
+                <div class="chart-row">
+                    <div class="chart-label">1:1</div>
+                    <div class="chart-track">
+                        <div class="chart-fill" style="width: 71.11984282907662%; background-color: var(--accent);"></div>
+                        <div class="chart-percent" style="left: 71.11984282907662%;">71.1%</div>
+                    </div>
+                    <div class="chart-value">362</div>
+                </div>
+        
+                <div class="chart-row">
+                    <div class="chart-label">7:1</div>
+                    <div class="chart-track">
+                        <div class="chart-fill" style="width: 6.8762278978389%; background-color: var(--accent);"></div>
+                        <div class="chart-percent" style="left: 6.8762278978389%;">6.9%</div>
+                    </div>
+                    <div class="chart-value">35</div>
+                </div>
+        
+                <div class="chart-row">
+                    <div class="chart-label">5:1</div>
+                    <div class="chart-track">
+                        <div class="chart-fill" style="width: 5.893909626719057%; background-color: var(--accent);"></div>
+                        <div class="chart-percent" style="left: 5.893909626719057%;">5.9%</div>
+                    </div>
+                    <div class="chart-value">30</div>
+                </div>
+        
+                <div class="chart-row">
+                    <div class="chart-label">6:1</div>
+                    <div class="chart-track">
+                        <div class="chart-fill" style="width: 5.893909626719057%; background-color: var(--accent);"></div>
+                        <div class="chart-percent" style="left: 5.893909626719057%;">5.9%</div>
+                    </div>
+                    <div class="chart-value">30</div>
+                </div>
+        
+                <div class="chart-row">
+                    <div class="chart-label">8:1</div>
+                    <div class="chart-track">
+                        <div class="chart-fill" style="width: 4.715127701375246%; background-color: var(--accent);"></div>
+                        <div class="chart-percent" style="left: 4.715127701375246%;">4.7%</div>
+                    </div>
+                    <div class="chart-value">24</div>
+                </div>
+        
+                <div class="chart-row">
+                    <div class="chart-label">5:2</div>
+                    <div class="chart-track">
+                        <div class="chart-fill" style="width: 1.9646365422396856%; background-color: var(--accent);"></div>
+                        <div class="chart-percent" style="left: 1.9646365422396856%;">2.0%</div>
+                    </div>
+                    <div class="chart-value">10</div>
+                </div>
+        
+                <div class="chart-row">
+                    <div class="chart-label">1:3</div>
+                    <div class="chart-track">
+                        <div class="chart-fill" style="width: 1.37524557956778%; background-color: var(--accent);"></div>
+                        <div class="chart-percent" style="left: 1.37524557956778%;">1.4%</div>
+                    </div>
+                    <div class="chart-value">7</div>
+                </div>
+        
+                <div class="chart-row">
+                    <div class="chart-label">1:2</div>
+                    <div class="chart-track">
+                        <div class="chart-fill" style="width: 1.37524557956778%; background-color: var(--accent);"></div>
+                        <div class="chart-percent" style="left: 1.37524557956778%;">1.4%</div>
+                    </div>
+                    <div class="chart-value">7</div>
+                </div>
+        
+                <div class="chart-row">
+                    <div class="chart-label">4:1</div>
+                    <div class="chart-track">
+                        <div class="chart-fill" style="width: 0.7858546168958742%; background-color: var(--accent);"></div>
+                        <div class="chart-percent" style="left: 0.7858546168958742%;">0.8%</div>
+                    </div>
+                    <div class="chart-value">4</div>
+                </div>
+        
+            </div>
+
+            <div class="section">
+                <div class="section-title"><span>️</span> Exception Breakdown (Total: 188)</div>
+                <table class="exception-table">
+                    <thead><tr><th>Exception Category</th><th>Count</th><th>Severity</th></tr></thead>
+                    <tbody>
+    
+                        <tr>
+                            <td>Settlement Lag</td>
+                            <td>68</td>
+                            <td><span class="badge badge-warning">Warning</span></td>
+                        </tr>
+        
+                        <tr>
+                            <td>Orphan Bank Credit</td>
+                            <td>59</td>
+                            <td><span class="badge badge-warning">Warning</span></td>
+                        </tr>
+        
+                        <tr>
+                            <td>Genuine Exception</td>
+                            <td>39</td>
+                            <td><span class="badge badge-danger">Danger</span></td>
+                        </tr>
+        
+                        <tr>
+                            <td>Duplicate Bank Credit</td>
+                            <td>22</td>
+                            <td><span class="badge badge-danger">Danger</span></td>
+                        </tr>
+        
+                    </tbody>
+                </table>
+            </div>
+            <footer><p>Generated by Bancapp Reconciliation Engine | Confidential & Proprietary</p></footer>
+        </div>
+    </body>
+    </html>
+    
