@@ -173,11 +173,15 @@ The pipeline generates an interactive HTML dashboard summarizing match rates, ex
 | Duplicate Bank Credit | 22 | Danger |
 
 ### Key Achievements
-✅ Fixed critical 1:N regex bug (strips "PART" and "-P1" suffixes)
-✅ Eliminated match_group_id collisions between May/June
-✅ Added comprehensive test coverage for edge cases
-✅ Matched 509 of 616 internal transactions (82.6%) with zero false positives
-✅ Built reproducible pipeline (runs clean from scratch)
+✔️ Fixed critical 1:N regex bug (strips "PART" and "-P1" suffixes)
+
+✔️ Eliminated match_group_id collisions between May/June
+
+✔️ Added comprehensive test coverage for edge cases
+
+✔️ Matched 509 of 616 internal transactions (82.6%) with zero false positives
+
+✔️ Built reproducible pipeline (runs clean from scratch)
 
 ## 🧪 Testing
 
