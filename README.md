@@ -119,24 +119,39 @@ Unmatched items are classified based on **ageing analysis**:
 - **Orphan Bank Credit**: No corresponding internal transaction
 - **Internal Self-Netting**: SALE + REVERSAL pairs that net to zero
 
-## Dashboard Preview
+## Dashboard
 
-The pipeline generates an interactive HTML dashboard summarizing match rates, exceptions, and cardinality breakdowns.
+The reconciliation dashboard provides an operational view of the May and
+June 2026 settlement reconciliation.
 
-### **Dashboard Overview**
-<img width="1502" height="576" alt="dashboard-overview" src="https://github.com/user-attachments/assets/f81b2fdd-7467-44da-99c2-596315fd3b11" />
+### Reconciliation Overview
+
+<img width="1538" height="432" alt="Screenshot 2026-08-26 093925" src="https://github.com/user-attachments/assets/2befd41c-02ca-4a86-98c1-f4cf75d94e24" />
+
+Consolidated view of transaction volumes, reconciliation status,
+matching cardinality, and settlement controls.
+
+### Monthly Controls and Exceptions
+
+<img width="1515" height="582" alt="Screenshot 2026-08-26 094121" src="https://github.com/user-attachments/assets/802dfd24-63fa-49b9-b016-97711e11ac4e" />
 
 
-### **Reconciliation Status Summary**
-<img width="1471" height="362" alt="dashboard-status-summary" src="https://github.com/user-attachments/assets/05f7dea5-a305-42d9-86b5-ad1c6b30779e" />
+Monthly reconciliation outcomes and exception categories by count and value.
+
+### Transaction-Level Reconciliation
+
+<img width="1887" height="907" alt="Screenshot 2026-08-26 094413" src="https://github.com/user-attachments/assets/c4416f96-a50f-4c00-b683-331df11f1cdc" />
+
+Traceable reconciliation records with match groups, cardinality,
+amounts, variance, status, and matching methodology.
+
+### Backlog Management
+
+<img width="1887" height="906" alt="Screenshot 2026-08-26 094507" src="https://github.com/user-attachments/assets/6fe351d8-945e-4a39-8b1b-d9c45282acdc" />
 
 
-### **Matching Cardinality Distribution**
-<img width="1482" height="622" alt="dashboard-cardinality" src="https://github.com/user-attachments/assets/4fa78d21-3933-4a88-8a27-c675b0b41ef6" />
-
-
-### **Exception Breakdown**
-<img width="1467" height="515" alt="dashboard-exceptions" src="https://github.com/user-attachments/assets/d89c3a37-8861-43ea-83dc-c36b539085ca" />
+May unmatched items carried into June, including cleared items,
+remaining open items, ageing, and lag-vs-exception classification.
 
 
 > Open `output/reconciliation_dashboard.html` in a browser after running the pipeline to view the live, interactive version.
