@@ -2,7 +2,7 @@
 
 A production-grade, deterministic financial reconciliation pipeline designed to automate the matching of internal ledger transactions against bank settlement files. Built for Bancapp Automation's Data Analyst assignment.
 
-## 📊 Key Metrics
+## Key Metrics
 
 | Metric | Value |
 |--------|-------|
@@ -14,7 +14,7 @@ A production-grade, deterministic financial reconciliation pipeline designed to 
 | **May Backlog Cleared** | 22 items |
 | **Execution Time** | ~1.5 seconds |
 
-## ✨ Features
+## Features
 
 - **Multi-Pass Matching Engine**: Handles all 4 reconciliation cardinalities (1:1, 1:N, N:1, N:M)
 - **Strict Consumption Control**: Prevents double-matching with `is_consumed` flags
@@ -24,7 +24,7 @@ A production-grade, deterministic financial reconciliation pipeline designed to 
 - **Audit Trail**: Unique `match_group_id` for complete traceability
 - **Interactive Dashboard**: Professional HTML visualization of reconciliation results
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Python 3.11+
@@ -55,7 +55,7 @@ Outputs will be generated in the `/output` directory:
 - `summary_control_report.csv` — monthly metrics
 - `reconciliation_dashboard.html` — interactive visualization
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 Bancapp_Reconciliation/
@@ -84,7 +84,7 @@ Bancapp_Reconciliation/
 └── README.md
 ```
 
-## 🛠️ Technical Architecture
+## Technical Architecture
 
 ### Multi-Pass Matching Strategy
 
@@ -119,7 +119,7 @@ Unmatched items are classified based on **ageing analysis**:
 - **Orphan Bank Credit**: No corresponding internal transaction
 - **Internal Self-Netting**: SALE + REVERSAL pairs that net to zero
 
-## 📸 Dashboard Preview
+## Dashboard Preview
 
 The pipeline generates an interactive HTML dashboard summarizing match rates, exceptions, and cardinality breakdowns.
 
@@ -139,9 +139,9 @@ The pipeline generates an interactive HTML dashboard summarizing match rates, ex
 <img width="1467" height="515" alt="dashboard-exceptions" src="https://github.com/user-attachments/assets/d89c3a37-8861-43ea-83dc-c36b539085ca" />
 
 
-> 💡 Open `output/reconciliation_dashboard.html` in a browser after running the pipeline to view the live, interactive version.
+> Open `output/reconciliation_dashboard.html` in a browser after running the pipeline to view the live, interactive version.
 
-## 📈 Results & Performance
+## Results & Performance
 
 ### Reconciliation Status Summary (Unified Output View)
 | Status | Count | Share |
@@ -173,17 +173,17 @@ The pipeline generates an interactive HTML dashboard summarizing match rates, ex
 | Duplicate Bank Credit | 22 | Danger |
 
 ### Key Achievements
-✔️ Fixed critical 1:N regex bug (strips "PART" and "-P1" suffixes)
+* Fixed critical 1:N regex bug (strips "PART" and "-P1" suffixes)
 
-✔️ Eliminated match_group_id collisions between May/June
+* Eliminated match_group_id collisions between May/June
 
-✔️ Added comprehensive test coverage for edge cases
+* Added comprehensive test coverage for edge cases
 
-✔️ Matched 509 of 616 internal transactions (82.6%) with zero false positives
+* Matched 509 of 616 internal transactions (82.6%) with zero false positives
 
-✔️ Built reproducible pipeline (runs clean from scratch)
+* Built reproducible pipeline (runs clean from scratch)
 
-## 🧪 Testing
+## Testing
 
 ```bash
 # Run all tests
@@ -197,7 +197,7 @@ Key test cases:
 - Input validation (missing columns, invalid dates/amounts)
 - Consumption control (no double-matching)
 
-## 📝 Design Decisions
+## Design Decisions
 
 ### Why Multi-Pass Instead of Single Join?
 In financial reconciliation, **certainty matters more than speed**. A multi-pass approach ensures:
@@ -221,14 +221,14 @@ Settlement dates ≠ transaction dates. May transactions may settle in June. The
 2. Prioritizes "PREV CYCLE" bank lines to clear backlog
 3. Only then processes fresh June transactions
 
-## 🎯 Alignment with Bancapp's Reconsyde Platform
+## Alignment with Bancapp's Reconsyde Platform
 
 This solution mirrors Bancapp's product philosophy:
 - **Integrate** → Multiple data sources (internal + bank)
 - **Reconcile** → Multi-pass matching with strict controls
 - **Analyze** → Exception categorization + ageing + dashboard
 
-## 📄 License
+## License
 This project is submitted for Bancapp Automation's Data Analyst assignment.
 
 ## Author
