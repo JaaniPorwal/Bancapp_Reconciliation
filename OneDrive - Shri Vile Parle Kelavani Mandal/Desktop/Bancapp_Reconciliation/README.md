@@ -119,17 +119,40 @@ Unmatched items are classified based on **ageing analysis**:
 - **Orphan Bank Credit**: No corresponding internal transaction
 - **Internal Self-Netting**: SALE + REVERSAL pairs that net to zero
 
-## Dashboard Preview
+## Dashboard
 
-The pipeline generates an interactive HTML dashboard summarizing match rates, exceptions, and cardinality breakdowns.
+The reconciliation dashboard provides an operational view of the May and
+June 2026 settlement reconciliation.
 
-![Dashboard Overview](assets/dashboard-overview.png)
+### Reconciliation Overview
 
-![Reconciliation Status Summary](assets/dashboard-status-summary.png)
+<img width="1538" height="432" alt="Screenshot 2026-08-26 093925" src="https://github.com/user-attachments/assets/2befd41c-02ca-4a86-98c1-f4cf75d94e24" />
 
-![Matching Cardinality Distribution](assets/dashboard-cardinality.png)
+Consolidated view of transaction volumes, reconciliation status,
+matching cardinality, and settlement controls.
 
-![Exception Breakdown](assets/dashboard-exceptions.png)
+### Monthly Controls and Exceptions
+
+<img width="1515" height="582" alt="Screenshot 2026-08-26 094121" src="https://github.com/user-attachments/assets/802dfd24-63fa-49b9-b016-97711e11ac4e" />
+
+
+Monthly reconciliation outcomes and exception categories by count and value.
+
+### Transaction-Level Reconciliation
+
+<img width="1887" height="907" alt="Screenshot 2026-08-26 094413" src="https://github.com/user-attachments/assets/c4416f96-a50f-4c00-b683-331df11f1cdc" />
+
+Traceable reconciliation records with match groups, cardinality,
+amounts, variance, status, and matching methodology.
+
+### Backlog Management
+
+<img width="1887" height="906" alt="Screenshot 2026-08-26 094507" src="https://github.com/user-attachments/assets/6fe351d8-945e-4a39-8b1b-d9c45282acdc" />
+
+
+May unmatched items carried into June, including cleared items,
+remaining open items, ageing, and lag-vs-exception classification.
+
 
 > Open `output/reconciliation_dashboard.html` in a browser after running the pipeline to view the live, interactive version.
 
@@ -166,9 +189,13 @@ The pipeline generates an interactive HTML dashboard summarizing match rates, ex
 
 ### Key Achievements
 * Fixed critical 1:N regex bug (strips "PART" and "-P1" suffixes)
+
 * Eliminated match_group_id collisions between May/June
+
 * Added comprehensive test coverage for edge cases
+
 * Matched 509 of 616 internal transactions (82.6%) with zero false positives
+
 * Built reproducible pipeline (runs clean from scratch)
 
 ## Testing
